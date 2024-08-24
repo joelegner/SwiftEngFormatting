@@ -3,7 +3,7 @@ import Foundation
 /* This is a prototype. Leave it here and create a new package some day.
  Maybe even publish the package. It's kind of neat. */
 
-func significantDigitFormat(_ value: Double, digits: Int=3) -> String? {
+private func significantDigitFormat(_ value: Double, digits: Int=3) -> String? {
     // Format the value to three significant digits
     let formatter = NumberFormatter()
     
@@ -17,7 +17,7 @@ func significantDigitFormat(_ value: Double, digits: Int=3) -> String? {
     }
 }
 
-extension String.StringInterpolation {
+public extension String.StringInterpolation {
     mutating func appendInterpolation(_ value: Date) {
         let formatter = DateFormatter()
         formatter.dateStyle = .full
