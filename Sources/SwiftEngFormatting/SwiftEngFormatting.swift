@@ -55,6 +55,56 @@ public extension String.StringInterpolation {
         }
     }
     
+    mutating func appendInterpolation(ft value: Double) {
+        if let valueSigDig = significantDigitFormat(value) {
+            // Base case if formatting works
+            appendLiteral("\(valueSigDig) ft")
+        } else {
+            // Fallback if formatting does not work
+            appendLiteral("\(value) ft")
+        }
+    }
+    
+    mutating func appendInterpolation(decFt value: Double)  {
+        let formattedValue = String(format: "%.3f", value)
+        appendLiteral("\(formattedValue) ft")
+    }
+    
+    mutating func appendInterpolation(kipPerFt value: Double)  {
+        let formattedValue = String(format: "%.2f", value)
+        appendLiteral("\(formattedValue) k/ft")
+    }
+    
+    mutating func appendInterpolation(pcf value: Double) {
+        if let valueSigDig = significantDigitFormat(value) {
+            // Base case if formatting works
+            appendLiteral("\(valueSigDig) pcf")
+        } else {
+            // Fallback if formatting does not work
+            appendLiteral("\(value) pcf")
+        }
+    }
+    
+    mutating func appendInterpolation(psf value: Double) {
+        if let valueSigDig = significantDigitFormat(value, digits:2) {
+            // Base case if formatting works
+            appendLiteral("\(valueSigDig) psf")
+        } else {
+            // Fallback if formatting does not work
+            appendLiteral("\(value) psf")
+        }
+    }
+    
+    mutating func appendInterpolation(ksf value: Double) {
+        if let valueSigDig = significantDigitFormat(value, digits:2) {
+            // Base case if formatting works
+            appendLiteral("\(valueSigDig) ksf")
+        } else {
+            // Fallback if formatting does not work
+            appendLiteral("\(value) ksf")
+        }
+    }
+    
     mutating func appendInterpolation(ftin value: Double) {
         let feet = Int(value)
         let inchesPerFoot = 12.0
