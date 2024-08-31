@@ -105,6 +105,16 @@ public extension String.StringInterpolation {
         }
     }
     
+    mutating func appendInterpolation(in value: Double) {
+        if let valueSigDig = significantDigitFormat(value, digits:3) {
+            // Base case if formatting works
+            appendLiteral("\(valueSigDig) in")
+        } else {
+            // Fallback if formatting does not work
+            appendLiteral("\(value) in")
+        }
+    }
+    
     mutating func appendInterpolation(ftin value: Double) {
         let feet = Int(value)
         let inchesPerFoot = 12.0
