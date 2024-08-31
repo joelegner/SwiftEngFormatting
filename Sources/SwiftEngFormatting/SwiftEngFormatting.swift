@@ -49,6 +49,16 @@ public extension String.StringInterpolation {
         }
     }
     
+    mutating func appendInterpolation(kipft value: Double) {
+        if let valueSigDig = significantDigitFormat(value) {
+            // Base case if formatting works
+            appendLiteral("\(valueSigDig) kip-ft")
+        } else {
+            // Fallback if formatting does not work
+            appendLiteral("\(value) kip-ft")
+        }
+    }
+    
     mutating func appendInterpolation(kips value: Double) {
         if let formattedValue = significantDigitFormat(value, digits: 3) {
             appendLiteral(formattedValue)
