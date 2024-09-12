@@ -145,14 +145,14 @@ public extension String.StringInterpolation {
         }
         
         func formatResult(feet: Int, inches: Int, fraction: String = "") {
+            var sign: String = ""
+            if value < 0 {
+                sign = "-"
+            }
             if abs(feet) > 0 {
-                appendLiteral("\(feet)'-\(inches)\(fraction)\"")
+                appendLiteral("\(sign)\(abs(feet))'-\(inches)\(fraction)\"")
             } else {
-                if value < 0 {
-                    appendLiteral("-\(inches)\(fraction)\"")
-                } else {
-                    appendLiteral("\(inches)\(fraction)\"")
-                }
+                appendLiteral("\(sign)\(inches)\(fraction)\"")
             }
         }
         
@@ -160,7 +160,10 @@ public extension String.StringInterpolation {
             let numerator = Int(round((decimalInches - Double(wholeInches)) * Double(denominator)))
             let (simpleNumerator, simpleDenominator) = simplify(numerator, denominator)
             
-            if simpleNumerator == simpleDenominator {
+            if simpleNumerator == 0 {
+                formatResult(feet: feet, inches: wholeInches)
+            }
+            else if simpleNumerator == simpleDenominator {
                 formatResult(feet: feet, inches: wholeInches + 1)
             } else {
                 formatResult(feet: feet, inches: wholeInches, fraction: " \(simpleNumerator)/\(simpleDenominator)")

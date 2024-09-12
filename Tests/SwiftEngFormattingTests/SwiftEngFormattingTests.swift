@@ -20,6 +20,8 @@ final class SwiftEngFormattingTests: XCTestCase {
         XCTAssertEqual("\(ftin:0.0)", "0\"")
         XCTAssertEqual("\(ftin:-0.0)", "0\"")
         XCTAssertEqual("\(ftin:-0.75)", "-9\"")
+        XCTAssertEqual("\(ftin:56.0/12.0)", "4'-8\"")
+        XCTAssertEqual("\(ftin:-56.0/12.0)", "-4'-8\"")
     }
     
     func testSignificantDigitsFormatting() {
